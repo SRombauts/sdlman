@@ -1,0 +1,25 @@
+# Copyright (c) 2013-2018 Sebastien Rombauts (sebastien.rombauts@gmail.com)
+
+language: cpp
+
+# compilers to add to build matrix
+compiler:
+  - gcc
+  - clang
+
+before_install:
+  - sudo apt-get update -qq
+  - sudo apt-get install -qq cppcheck
+  - sudo apt-get install -qq libsdl2-dev libsdl2-image-dev libsdl2-mixer-dev libsdl2-ttf-dev libegl1-mesa-dev libgles2-mesa-dev
+
+# scripts to run before build
+before_script:
+  - mkdir build
+  - cd build
+  - cmake ..
+
+# build app, and run tests (ie make & make test)
+script:
+  - cmake --build .
+  - ctest --verbose
+
